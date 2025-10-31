@@ -1,8 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
 
-export default defineConfig({
-  base: '/days-of-tanvi/',   // <-- your repo name (including the trailing slash)
-  plugins: [react()],
-  // ... other config
-});
+export default defineConfig(({ mode }) => ({
+  base: '/days-of-tanvi/',
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));
