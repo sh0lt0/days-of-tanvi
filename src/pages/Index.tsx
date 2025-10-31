@@ -1,12 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import DayCard from "@/components/DayCard";
+import FloatingHearts from "@/components/FloatingHearts";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import MusicToggle from "@/components/MusicToggle";
+import { memories } from "@/data/memories";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <FloatingHearts />
+      
+      <div className="relative z-10">
+        <Hero />
+        
+        <main className="container mx-auto px-4 py-20 space-y-32 max-w-6xl">
+          {memories.map((memory, index) => (
+            <DayCard key={memory.day} memory={memory} index={index} />
+          ))}
+        </main>
+        
+        <Footer />
       </div>
+      
+      <MusicToggle />
     </div>
   );
 };
