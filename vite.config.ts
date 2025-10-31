@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: '/days-of-tanvi/',
+  base: mode === 'production' ? '/days-of-tanvi/' : '/',
   server: {
     host: "::",
     port: 8080,
